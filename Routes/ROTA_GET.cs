@@ -3,20 +3,25 @@ using ApiContratos.Models;
 namespace ApiContratos.Routes
 {
     public static class RotasGET
+{
+    public static void Map(WebApplication app, List<Contrato> contratos)
     {
-        public static void Map(WebApplication app, List<Contrato> contratos)
+        app.MapGet("/contratos", async () =>
         {
-            app.MapGet("/contratos", () => Results.Ok(contratos));
+            await Task.Delay(10);
+            return Results.Ok(contratos);
+        });
 
-            app.MapGet("/contratos/{id}", (int id) =>
-            {
-                var contrato = contratos.FirstOrDefault(c => c.Id == id);
+        app.MapGet("/contratos/{id}", async (int id) =>
+        {
+            await Task.Delay(10);
 
-                if (contrato == null)
-                    return Results.NotFound("Contrato não encontrado.");
-
-                return Results.Ok(contrato);
-            });
-        }
+            var contrato = contratos.FirstOrDefault(c => c.Id == id);
+            return contrato == null
+                ? Results.NotFound("Contrato não encontrado.")
+                : Results.Ok(contrato);
+        });
     }
+}
+
 }
