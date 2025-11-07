@@ -30,8 +30,8 @@ var contratos = new List<Contrato>()
         Id = 2,
         Numero = "CT-002",
         Cliente = "CCláudio Dias",
-        DataInicio = DateOnly.FromDateTime(DateTime.UtcNow.AddMonths(-1)),
-        DataVencimento = DateOnly.FromDateTime(DateTime.UtcNow.AddMonths(5)),
+        DataInicio = DateOnly.FromDateTime(DateTime.UtcNow.AddMonths(-50)),
+        DataVencimento = DateOnly.FromDateTime(DateTime.UtcNow.AddMonths(-25)),
         Descricao = "Contrato anual de suporte"
     },
     new Contrato
@@ -39,8 +39,8 @@ var contratos = new List<Contrato>()
         Id = 3,
         Numero = "CT-003",
         Cliente = "Tiago Alves",
-        DataInicio = DateOnly.FromDateTime(DateTime.UtcNow.AddMonths(-2)),
-        DataVencimento = DateOnly.FromDateTime(DateTime.UtcNow.AddMonths(10)),
+        DataInicio = DateOnly.FromDateTime(DateTime.UtcNow.AddMonths(-8)),
+        DataVencimento = DateOnly.FromDateTime(DateTime.UtcNow.AddMonths(2)),
         Descricao = "Contrato Empresarial"
     },
     new Contrato
@@ -48,8 +48,8 @@ var contratos = new List<Contrato>()
         Id = 4,
         Numero = "CT-004",
         Cliente = "Sônia Souza",
-        DataInicio = DateOnly.FromDateTime(DateTime.UtcNow.AddMonths(-1)),
-        DataVencimento = DateOnly.FromDateTime(DateTime.UtcNow.AddMonths(5)),
+        DataInicio = DateOnly.FromDateTime(DateTime.UtcNow.AddMonths(-95)),
+        DataVencimento = DateOnly.FromDateTime(DateTime.UtcNow.AddMonths(-32)),
         Descricao = "Contrato anual de consultoria"
     },
     new Contrato
@@ -57,8 +57,8 @@ var contratos = new List<Contrato>()
         Id = 5,
         Numero = "CT-256",
         Cliente = "Alexandre Lopes",
-        DataInicio = DateOnly.FromDateTime(DateTime.UtcNow.AddMonths(-2)),
-        DataVencimento = DateOnly.FromDateTime(DateTime.UtcNow.AddMonths(10)),
+        DataInicio = DateOnly.FromDateTime(DateTime.UtcNow.AddMonths(-4)),
+        DataVencimento = DateOnly.FromDateTime(DateTime.UtcNow.AddMonths(8)),
         Descricao = "Contrato de desenvolvimento"
     },
     new Contrato
