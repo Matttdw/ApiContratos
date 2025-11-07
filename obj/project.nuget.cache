@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ElvYckWP+qo=",
+  "dgSpecHash": "KK+G2BIvHY0=",
   "success": true,
-  "projectFilePath": "C:\\Users\\mathc\\ApiContratos\\ApiContratos.csproj",
+  "projectFilePath": "C:\\Users\\mathc\\OneDrive\\Área de Trabalho\\ApiContratos\\ApiContratos.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mathc\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\mathc\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",

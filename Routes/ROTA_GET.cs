@@ -10,9 +10,7 @@ namespace ApiContratos.Routes
         {
             app.MapGet("/api/contratos", async (AppDbContext db) =>
             {
-                // apply potential renewals by computing effective vencimento (updates in-memory objects if desired)
                 var contratos = await db.Contratos.AsNoTracking().ToListAsync();
-                // We will return the computed Ativo based on vencimento efetivo (in model)
                 return Results.Ok(contratos);
             }).WithName("GetContratos");
 
@@ -21,8 +19,6 @@ namespace ApiContratos.Routes
                 var contrato = await db.Contratos.FindAsync(id);
                 if (contrato == null) return Results.NotFound(new { message = "Contrato não encontrado." });
 
-                // If RenovacaoAutomatica and vencimento passed, we won't mutate DB here (To keep seed stable) -
-                // Ativo property uses computed vencimento when serialized.
                 return Results.Ok(contrato);
             }).WithName("GetContratoById");
         }

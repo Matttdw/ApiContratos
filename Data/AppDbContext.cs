@@ -12,7 +12,6 @@ namespace ApiContratos.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Map DateOnly to TEXT (ISO) for SQLite
             var dateOnlyConverter = new ValueConverter<DateOnly, string>(
                 d => d.ToString("yyyy-MM-dd"),
                 s => DateOnly.Parse(s));

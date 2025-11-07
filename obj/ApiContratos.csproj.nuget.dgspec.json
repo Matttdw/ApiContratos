@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mathc\\ApiContratos\\ApiContratos.csproj": {}
+    "C:\\Users\\mathc\\OneDrive\\Área de Trabalho\\ApiContratos\\ApiContratos.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mathc\\ApiContratos\\ApiContratos.csproj": {
+    "C:\\Users\\mathc\\OneDrive\\Área de Trabalho\\ApiContratos\\ApiContratos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mathc\\ApiContratos\\ApiContratos.csproj",
+        "projectUniqueName": "C:\\Users\\mathc\\OneDrive\\Área de Trabalho\\ApiContratos\\ApiContratos.csproj",
         "projectName": "ApiContratos",
-        "projectPath": "C:\\Users\\mathc\\ApiContratos\\ApiContratos.csproj",
+        "projectPath": "C:\\Users\\mathc\\OneDrive\\Área de Trabalho\\ApiContratos\\ApiContratos.csproj",
         "packagesPath": "C:\\Users\\mathc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mathc\\ApiContratos\\obj\\",
+        "outputPath": "C:\\Users\\mathc\\OneDrive\\Área de Trabalho\\ApiContratos\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mathc\\AppData\\Roaming\\NuGet\\NuGet.Config"
