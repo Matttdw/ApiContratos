@@ -1,24 +1,28 @@
 using ApiContratos.Models;
+using ApiContratos.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApiContratos.Routes
 {
     public static class RotasPOST
     {
-        public static void Map(WebApplication app, List<Contrato> contratos)
+        public static void Map(WebApplication app)
         {
-            app.MapPost("/contratos", async (Contrato novoContrato) =>
+            app.MapPost("/api/contratos", async (Contrato novoContrato, AppDbContext db) =>
             {
-                await Task.Delay(10);
+                // Basic validation
+                if (string.IsNullOrWhiteSpace(novoContrato.Numero) || string.IsNullOrWhiteSpace(novoContrato.Cliente))
+                    return Results.BadRequest(new { message = "Numero e Cliente são obrigatórios." });
 
-                novoContrato.Id = contratos.Count == 0 
-                    ? 1 
-                    : contratos.Max(c => c.Id) + 1;
+                // Assign Id will be handled by EF (auto incremental). Ensure Id is 0
+                novoContrato.Id = 0;
 
-                contratos.Add(novoContrato);
+                // If the client sent a past DataVencimento but marked renovacao, the Ativo computed will reflect that.
+                db.Contratos.Add(novoContrato);
+                await db.SaveChangesAsync();
 
-                return Results.Created($"/contratos/{novoContrato.Id}", novoContrato);
-        });
+                return Results.Created($"/api/contratos/{novoContrato.Id}", novoContrato);
+            }).WithName("CreateContrato");
         }
     }
-
 }

@@ -1,22 +1,20 @@
-using ApiContratos.Models;
+using ApiContratos.Data;
 
 namespace ApiContratos.Routes
 {
     public static class RotasDELETE
     {
-        public static void Map(WebApplication app, List<Contrato> contratos)
+        public static void Map(WebApplication app)
         {
-            app.MapDelete("/contratos/{id}", (int id) =>
+            app.MapDelete("/api/contratos/{id:int}", async (int id, AppDbContext db) =>
             {
-                var contrato = contratos.FirstOrDefault(c => c.Id == id);
+                var contrato = await db.Contratos.FindAsync(id);
+                if (contrato == null) return Results.NotFound(new { message = "Contrato não encontrado." });
 
-                if (contrato == null)
-                    return Results.NotFound("Contrato não encontrado.");
-
-                contratos.Remove(contrato);
-
-                return Results.Ok($"Contrato {id} deletado com sucesso.");
-            });
+                db.Contratos.Remove(contrato);
+                await db.SaveChangesAsync();
+                return Results.Ok(new { message = $"Contrato {id} removido." });
+            }).WithName("DeleteContrato");
         }
     }
 }
