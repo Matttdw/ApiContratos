@@ -1,0 +1,6 @@
+C:\Users\mathc\ApiContratos\obj\Debug\net8.0\ApiContratos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mathc\ApiContratos\obj\Debug\net8.0\ApiContratos.AssemblyInfoInputs.cache
+C:\Users\mathc\ApiContratos\obj\Debug\net8.0\ApiContratos.AssemblyInfo.cs
+C:\Users\mathc\ApiContratos\obj\Debug\net8.0\ApiContratos.csproj.CoreCompileInputs.cache
+C:\Users\mathc\ApiContratos\obj\Debug\net8.0\ApiContratos.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\mathc\ApiContratos\obj\Debug\net8.0\ApiContratos.sourcelink.json
