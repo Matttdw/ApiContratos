@@ -24,3 +24,10 @@ C:\Users\mathc\ApiContratos\obj\Debug\net8.0\refint\ApiContratos.dll
 C:\Users\mathc\ApiContratos\obj\Debug\net8.0\ApiContratos.pdb
 C:\Users\mathc\ApiContratos\obj\Debug\net8.0\ApiContratos.genruntimeconfig.cache
 C:\Users\mathc\ApiContratos\obj\Debug\net8.0\ref\ApiContratos.dll
+C:\Users\mathc\ApiContratos\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\mathc\ApiContratos\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\mathc\ApiContratos\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\mathc\ApiContratos\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\mathc\ApiContratos\obj\Debug\net8.0\ApiContratos.csproj.AssemblyReference.cache
+C:\Users\mathc\ApiContratos\obj\Debug\net8.0\ApiContratos.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\mathc\ApiContratos\obj\Debug\net8.0\ApiContr.0F3885E1.Up2Date
