@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\mathc\\OneDrive\\Área de Trabalho\\Api Teste\\ApiContratos\\wwwroot\\app.js",
+      "PackagePath": "staticwebassets\\app.js"
+    },
+    {
       "Id": "C:\\Users\\mathc\\OneDrive\\Área de Trabalho\\Api Teste\\ApiContratos\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
     },

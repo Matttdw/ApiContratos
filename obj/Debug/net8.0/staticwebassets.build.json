@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "nza0BLCzmlBi8/jAhD5NIsssEbhjRhH4sQxiw0KHu5g=",
+  "Hash": "P87mnhocNWryOHggozpm6Wo6n61jndqjwXmyMB/zmBo=",
   "Source": "ApiContratos",
   "BasePath": "_content/ApiContratos",
   "Mode": "Default",
@@ -16,6 +16,25 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Users\\mathc\\OneDrive\\Área de Trabalho\\Api Teste\\ApiContratos\\wwwroot\\app.js",
+      "SourceId": "ApiContratos",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mathc\\OneDrive\\Área de Trabalho\\Api Teste\\ApiContratos\\wwwroot\\",
+      "BasePath": "_content/ApiContratos",
+      "RelativePath": "app.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\app.js"
+    },
     {
       "Identity": "C:\\Users\\mathc\\OneDrive\\Área de Trabalho\\Api Teste\\ApiContratos\\wwwroot\\index.html",
       "SourceId": "ApiContratos",
