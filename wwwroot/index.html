@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciador de Contratos</title>
+</head>
+<body>
+
+    <h1>Gerenciador de Contratos</h1>
+
+    <!-- Seção para cadastro de novos contratos -->
+    <section>
+        <h2>Cadastrar Novo Contrato</h2>
+
+        <div>
+            <label>Número:
+                <input type="text" id="cadNumero">
+            </label>
+        </div>
+
+        <div>
+            <label>Cliente:
+                <input type="text" id="cadCliente">
+            </label>
+        </div>
+
+        <div>
+            <label>Data de Início (AAAA-MM-DD):
+                <input type="date" id="cadDataInicio">
+            </label>
+        </div>
+
+        <div>
+            <label>Data de Vencimento (AAAA-MM-DD):
+                <input type="date" id="cadDataVencimento">
+            </label>
+        </div>
+
+        <div>
+            <label>Renovação Automática:
+                <input type="checkbox" id="cadRenovacao">
+            </label>
+        </div>
+
+        <div>
+            <label>Descrição:
+                <textarea id="cadDescricao" rows="2"></textarea>
+            </label>
+        </div>
+
+        <button id="btnSalvar">Salvar Contrato</button>
+    </section>
+
+    <hr>
+
+    <!-- Seção para busca de contratos -->
+    <section>
+        <h2>Buscar Contratos</h2>
+
+        <div>
+            <label>ID:
+                <input type="number" id="buscaId">
+            </label>
+        </div>
+
+        <div>
+            <label>Número:
+                <input type="text" id="buscaNumero">
+            </label>
+        </div>
+
+        <div>
+            <label>Cliente:
+                <input type="text" id="buscaCliente">
+            </label>
+        </div>
+
+        <button id="btnBuscar">Buscar</button>
+        <button id="btnLimpar">Limpar</button>
+    </section>
+
+    <hr>
+
+    <!-- Seção para exibição da lista de contratos -->
+    <section>
+        <h2>Lista de Contratos</h2>
+        <button id="btnAtualizar">Atualizar Lista</button>
+
+        <table border="1" cellpadding="6" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Ações</th>
+                    <th>ID</th>
+                    <th>Número</th>
+                    <th>Cliente</th>
+                    <th>Início</th>
+                    <th>Vencimento</th>
+                    <th>Renovação</th>
+                    <th>Ativo</th>
+                    <th>Venc. Efetivo</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody id="tabelaContratos">
+                <!-- Linhas de contratos serão inseridas aqui dinamicamente -->
+            </tbody>
+        </table>
+    </section>
+
+</body>
+</html>
