@@ -10,13 +10,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite("Data Source=contratos.db"));
 
-// Adiciona suporte ao Swagger (documentação/teste da API)
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
 // Constrói a aplicação
 var app = builder.Build();
 
+// Configura o middleware para servir arquivos estáticos (HTML, CSS, JS, etc.)
+app.UseDefaultFiles();   // permite servir index.html por padrão
+app.UseStaticFiles();    // serve arquivos estáticos da pasta wwwroot
 
 // Garante que o banco de dados seja criado se ainda não existir
 using (var scope = app.Services.CreateScope())
@@ -24,14 +23,6 @@ using (var scope = app.Services.CreateScope())
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     db.Database.EnsureCreated();
 }
-
-// Ativa o Swagger na aplicação
-app.UseSwagger();
-app.UseSwaggerUI();
-
-
-// Redireciona a rota principal ("/") para o Swagger
-app.MapGet("/", () => Results.Redirect("/swagger"));
 
 RotasGET.Map(app);
 RotasPOST.Map(app);

@@ -2957,11 +2957,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mathc\\OneDrive\\Área de Trabalho\\ApiContratos\\ApiContratos.csproj",
+      "projectUniqueName": "C:\\Users\\mathc\\OneDrive\\Área de Trabalho\\Api Teste\\ApiContratos\\ApiContratos.csproj",
       "projectName": "ApiContratos",
-      "projectPath": "C:\\Users\\mathc\\OneDrive\\Área de Trabalho\\ApiContratos\\ApiContratos.csproj",
+      "projectPath": "C:\\Users\\mathc\\OneDrive\\Área de Trabalho\\Api Teste\\ApiContratos\\ApiContratos.csproj",
       "packagesPath": "C:\\Users\\mathc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mathc\\OneDrive\\Área de Trabalho\\ApiContratos\\obj\\",
+      "outputPath": "C:\\Users\\mathc\\OneDrive\\Área de Trabalho\\Api Teste\\ApiContratos\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\mathc\\AppData\\Roaming\\NuGet\\NuGet.Config"

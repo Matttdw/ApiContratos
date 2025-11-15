@@ -1,11 +1,19 @@
 {
   "Version": 1,
-  "Hash": "9XbA0ih3lo2zbLZQoxRsPtFzWk40wx/LrF303ePPpEI=",
+  "Hash": "qANbwgus2LiqJK9nYar50Y7TqDtv7nt0tPmGs6u6mag=",
   "Source": "ApiContratos",
   "BasePath": "_content/ApiContratos",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "ApiContratos\\wwwroot",
+      "Source": "ApiContratos",
+      "ContentRoot": "C:\\Users\\mathc\\OneDrive\\Área de Trabalho\\Api Teste\\ApiContratos\\wwwroot\\",
+      "BasePath": "_content/ApiContratos",
+      "Pattern": "**"
+    }
+  ],
   "Assets": []
 }
