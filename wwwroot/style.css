@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: #f5f6fa;
+}
+
+h1 {
+    text-align: center;
+    background: #3b3632;
+    color: white;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 30px;
+}
+
+section {
+    background: rgb(255, 255, 255);
+    margin-bottom: 25px;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px #0001;
+}
+
+section h2 {
+    margin-top: 0;
+    font-size: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 7px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background: #0984e3;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+
+button:hover {
+    background: #076ccc;
+}
+
+button.danger {
+    background: #d63031;
+}
+
+button.danger:hover {
+    background: #b12223;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th {
+    background: #2d3436;
+    color: white;
+    padding: 8px;
+    text-align: left;
+}
+
+td {
+    padding: 8px;
+    background: #ffffff;
+    border-bottom: 1px solid #eee;
+}
+
+tbody tr:nth-child(even) td {
+    background: #f2f2f2;
+}
