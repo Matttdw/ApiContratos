@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "58pgT4rRENEJnJp6xBR1om5/qf0l4Ua30XvuWvMwnSs=",
+  "Hash": "xlbH0E2WOw6vgb7Zd0nfM7r0YzJPd6FPPSGqFKn63mw=",
   "Source": "ApiContratos",
   "BasePath": "_content/ApiContratos",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "ApiContratos\\wwwroot",
       "Source": "ApiContratos",
-      "ContentRoot": "C:\\Users\\mathc\\OneDrive\\Área de Trabalho\\Api Teste\\ApiContratos\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\mathc\\API\\ApiContratos\\wwwroot\\",
       "BasePath": "_content/ApiContratos",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\mathc\\OneDrive\\Área de Trabalho\\Api Teste\\ApiContratos\\wwwroot\\app.js",
+      "Identity": "C:\\Users\\mathc\\API\\ApiContratos\\wwwroot\\app.js",
       "SourceId": "ApiContratos",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\mathc\\OneDrive\\Área de Trabalho\\Api Teste\\ApiContratos\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\mathc\\API\\ApiContratos\\wwwroot\\",
       "BasePath": "_content/ApiContratos",
       "RelativePath": "app.js",
       "AssetKind": "All",
@@ -36,10 +36,10 @@
       "OriginalItemSpec": "wwwroot\\app.js"
     },
     {
-      "Identity": "C:\\Users\\mathc\\OneDrive\\Área de Trabalho\\Api Teste\\ApiContratos\\wwwroot\\index.html",
+      "Identity": "C:\\Users\\mathc\\API\\ApiContratos\\wwwroot\\index.html",
       "SourceId": "ApiContratos",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\mathc\\OneDrive\\Área de Trabalho\\Api Teste\\ApiContratos\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\mathc\\API\\ApiContratos\\wwwroot\\",
       "BasePath": "_content/ApiContratos",
       "RelativePath": "index.html",
       "AssetKind": "All",
@@ -55,10 +55,10 @@
       "OriginalItemSpec": "wwwroot\\index.html"
     },
     {
-      "Identity": "C:\\Users\\mathc\\OneDrive\\Área de Trabalho\\Api Teste\\ApiContratos\\wwwroot\\style.css",
+      "Identity": "C:\\Users\\mathc\\API\\ApiContratos\\wwwroot\\style.css",
       "SourceId": "ApiContratos",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\mathc\\OneDrive\\Área de Trabalho\\Api Teste\\ApiContratos\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\mathc\\API\\ApiContratos\\wwwroot\\",
       "BasePath": "_content/ApiContratos",
       "RelativePath": "style.css",
       "AssetKind": "All",
