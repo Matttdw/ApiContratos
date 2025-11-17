@@ -3,6 +3,7 @@ const API_URL = "/api/contratos";
 
 // Cache em memória dos contratos carregados
 let contratosCache = [];
+let editandoId = null; // <--- ADICIONADO PARA SUPORTE AO PUT
 
 // --------- UTILITÁRIOS ---------
 
@@ -15,7 +16,6 @@ function formatarData(valor) {
 }
 
 function calcularClasseStatus(contrato) {
-    // Usa DataVencimento e RenovacaoAutomatica, igual à lógica do modelo
     if (!contrato.dataVencimento) return "";
 
     const hoje = new Date();
@@ -31,7 +31,6 @@ function calcularClasseStatus(contrato) {
     let venc = new Date(ano, mes - 1, dia);
 
     if (contrato.renovacaoAutomatica) {
-        // se auto-renova, joga o vencimento pra frente até ficar >= hoje
         while (venc < hoje) {
             venc.setFullYear(venc.getFullYear() + 1);
         }
@@ -39,9 +38,9 @@ function calcularClasseStatus(contrato) {
 
     const diffDias = Math.round((venc - hoje) / (1000 * 60 * 60 * 24));
 
-    if (diffDias < 0) return "table-danger";   // já passou
-    if (diffDias <= 7) return "table-warning"; // prestes a vencer
-    return "table-success";                    // ok
+    if (diffDias < 0) return "table-danger";
+    if (diffDias <= 7) return "table-warning";
+    return "table-success";
 }
 
 function badgeSimNao(valor) {
@@ -133,7 +132,7 @@ async function salvarContrato(event) {
         return;
     }
 
-    const novoContrato = {
+    const contrato = {
         numero,
         cliente,
         dataInicio: dataInicio || null,
@@ -142,11 +141,40 @@ async function salvarContrato(event) {
         descricao
     };
 
+    // ====================================================
+    //  MODO PUT (EDIÇÃO)
+    // ====================================================
+    if (editandoId !== null) {
+        try {
+            const resp = await fetch(`${API_URL}/${editandoId}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(contrato)
+            });
+
+            if (!resp.ok) throw new Error("Erro ao atualizar contrato");
+
+            alert("Contrato atualizado com sucesso!");
+            limparCadastro();
+            editandoId = null;
+            resetarBotaoSalvar();
+            await carregarContratos();
+            return;
+        } catch (err) {
+            console.error(err);
+            alert("Erro ao atualizar contrato.");
+            return;
+        }
+    }
+
+    // ====================================================
+    //  MODO POST (NOVO CONTRATO)
+    // ====================================================
     try {
         const resp = await fetch(API_URL, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(novoContrato)
+            body: JSON.stringify(contrato)
         });
 
         if (!resp.ok) {
@@ -154,7 +182,7 @@ async function salvarContrato(event) {
             throw new Error(erro.message || "Erro ao salvar contrato.");
         }
 
-        await carregarContratos(); // atualiza lista
+        await carregarContratos();
         limparCadastro();
         alert("Contrato salvo com sucesso!");
     } catch (err) {
@@ -187,7 +215,6 @@ function buscarPorId(event) {
     const idStr = document.getElementById("buscaId").value.trim();
 
     if (!idStr) {
-        // sem filtro → mostra todos
         renderTabela(contratosCache);
         return;
     }
@@ -213,9 +240,11 @@ function limparCadastro() {
     document.getElementById("cadDataVencimento").value = "";
     document.getElementById("cadRenovacao").checked = false;
     document.getElementById("cadDescricao").value = "";
+
+    editandoId = null;
+    resetarBotaoSalvar();
 }
 
-// Preenche form (view/edição local)
 function preencherFormulario(contrato) {
     document.getElementById("cadId").value = contrato.id;
     document.getElementById("cadNumero").value = contrato.numero;
@@ -232,16 +261,45 @@ function preencherFormulario(contrato) {
     document.getElementById("cadDescricao").value = contrato.descricao ?? "";
 }
 
+// --------- MODO EDIÇÃO (PUT) ---------
+
+function entrarModoEdicao(id) {
+    const contrato = contratosCache.find(
+        (c) => String(c.id) === String(id)
+    );
+
+    if (!contrato) {
+        alert("Contrato não encontrado.");
+        return;
+    }
+
+    preencherFormulario(contrato);
+    editandoId = contrato.id;
+
+    const btn = document.getElementById("btnSalvar");
+    btn.innerHTML = `<i class="bi bi-save"></i> Atualizar`;
+    btn.classList.remove("btn-success");
+    btn.classList.add("btn-primary");
+
+    alert("Contrato carregado para edição.");
+}
+
+function resetarBotaoSalvar() {
+    const btn = document.getElementById("btnSalvar");
+    btn.innerHTML = `<i class="bi bi-save"></i> Salvar`;
+    btn.classList.remove("btn-primary");
+    btn.classList.add("btn-success");
+}
+
 // --------- EVENTOS ---------
 
 document.addEventListener("DOMContentLoaded", () => {
-    // carrega lista inicial
     carregarContratos();
 
-    // cadastro
     document
         .getElementById("formCadastro")
         .addEventListener("submit", salvarContrato);
+
     document
         .getElementById("btnLimparCadastro")
         .addEventListener("click", limparCadastro);
@@ -254,12 +312,11 @@ document.addEventListener("DOMContentLoaded", () => {
         .getElementById("btnLimparBusca")
         .addEventListener("click", limparBusca);
 
-    // atualizar lista
     document
         .getElementById("btnAtualizar")
         .addEventListener("click", carregarContratos);
 
-    // ações na tabela
+    // AÇÕES NA TABELA
     const tbody = document.getElementById("tabelaContratos");
     tbody.addEventListener("click", (e) => {
         const btn = e.target.closest("button");
@@ -268,23 +325,28 @@ document.addEventListener("DOMContentLoaded", () => {
         const id = btn.getAttribute("data-id");
         if (!id) return;
 
+        // DELETE
         if (btn.classList.contains("btn-delete")) {
             deletarContrato(id);
             return;
         }
 
+        // EDITAR 🖊
+        if (btn.classList.contains("btn-edit")) {
+            entrarModoEdicao(id);
+            return;
+        }
+
+        // VISUALIZAR 👁
         const contrato = contratosCache.find(
             (c) => String(c.id) === String(id)
         );
         if (!contrato) {
-            alert("Contrato não encontrado na lista carregada.");
+            alert("Contrato não encontrado.");
             return;
         }
 
         preencherFormulario(contrato);
-
-        if (btn.classList.contains("btn-view")) {
-            alert("Contrato carregado no formulário para visualização.");
-        }
+        alert("Contrato carregado para visualização.");
     });
 });

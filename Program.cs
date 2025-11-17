@@ -27,6 +27,7 @@ using (var scope = app.Services.CreateScope())
 
 RotasGET.Map(app);
 RotasPOST.Map(app);
+RotasPUT.Map(app);
 RotasDELETE.Map(app);
 
 app.Run();
