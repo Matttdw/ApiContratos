@@ -21,7 +21,8 @@ app.UseStaticFiles();    // serve arquivos estáticos da pasta wwwroot
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    db.Database.EnsureCreated();
+    // Aplica migrações pendentes (cria/atualiza o banco conforme o modelo)
+    db.Database.Migrate();
 }
 
 RotasGET.Map(app);
