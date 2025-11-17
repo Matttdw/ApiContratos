@@ -5,8 +5,7 @@ const API_URL = "/api/contratos";
 let contratosCache = [];
 let editandoId = null; // <--- ADICIONADO PARA SUPORTE AO PUT
 
-// --------- UTILITÁRIOS ---------
-
+// Formata a data do formato ISO para DD/MM/AAAA
 function formatarData(valor) {
     if (!valor) return "";
     const partes = valor.split("T")[0].split("-");
@@ -15,17 +14,21 @@ function formatarData(valor) {
     return `${dia.padStart(2, "0")}/${mes.padStart(2, "0")}/${ano}`;
 }
 
+// Retorna a classe CSS baseada no status do contrato
 function calcularClasseStatus(contrato) {
     if (!contrato.dataVencimento) return "";
 
+    // Data atual sem hora
     const hoje = new Date();
     hoje.setHours(0, 0, 0, 0);
 
+    // Extrai ano, mês e dia da data de vencimento
     const [ano, mes, dia] = contrato.dataVencimento
         .split("T")[0]
         .split("-")
         .map(Number);
 
+    // Se dados inválidos, retorna vazio    
     if (!ano || !mes || !dia) return "";
 
     let venc = new Date(ano, mes - 1, dia);
@@ -36,6 +39,7 @@ function calcularClasseStatus(contrato) {
         }
     }
 
+    // Calcula a diferença em dias
     const diffDias = Math.round((venc - hoje) / (1000 * 60 * 60 * 24));
 
     if (diffDias < 0) return "table-danger";
@@ -43,6 +47,7 @@ function calcularClasseStatus(contrato) {
     return "table-success";
 }
 
+// Retorna o HTML do badge "Sim" ou "Não"
 function badgeSimNao(valor) {
     if (valor === true) {
         return '<span class="badge-status badge-sim">Sim</span>';
@@ -50,12 +55,12 @@ function badgeSimNao(valor) {
     return '<span class="badge-status badge-nao">Não</span>';
 }
 
-// --------- RENDERIZAÇÃO ---------
-
+// Renderiza a tabela de contratos
 function renderTabela(lista) {
     const tbody = document.getElementById("tabelaContratos");
     tbody.innerHTML = "";
 
+    // Caso a lista esteja vazia, exibe mensagem
     if (!lista || lista.length === 0) {
         const row = document.createElement("tr");
         row.innerHTML = `
@@ -67,12 +72,14 @@ function renderTabela(lista) {
         return;
     }
 
+    // Cria as linhas da tabela
     lista.forEach((contrato) => {
         const tr = document.createElement("tr");
 
         const classeStatus = calcularClasseStatus(contrato);
         if (classeStatus) tr.classList.add(classeStatus);
 
+        // Preenche as células da linha
         tr.innerHTML = `
             <td>
                 <div class="action-buttons">
@@ -101,8 +108,7 @@ function renderTabela(lista) {
     });
 }
 
-// --------- API ---------
-
+// parte de carregamento, salvamento e exclusão de contratos da API
 async function carregarContratos() {
     try {
         const resp = await fetch(API_URL);
@@ -116,6 +122,7 @@ async function carregarContratos() {
     }
 }
 
+// Salva um novo contrato ou atualiza um existente
 async function salvarContrato(event) {
     event.preventDefault();
 
@@ -127,11 +134,13 @@ async function salvarContrato(event) {
         document.getElementById("cadRenovacao").checked;
     const descricao = document.getElementById("cadDescricao").value.trim();
 
+    // Validação básica
     if (!numero || !cliente) {
         alert("Preencha pelo menos Número e Cliente.");
         return;
     }
 
+    // monta o objeto contrato
     const contrato = {
         numero,
         cliente,
@@ -141,9 +150,7 @@ async function salvarContrato(event) {
         descricao
     };
 
-    // ====================================================
-    //  MODO PUT (EDIÇÃO)
-    // ====================================================
+    // parte do código para o modo PUT (edição)
     if (editandoId !== null) {
         try {
             const resp = await fetch(`${API_URL}/${editandoId}`, {
@@ -167,9 +174,7 @@ async function salvarContrato(event) {
         }
     }
 
-    // ====================================================
-    //  MODO POST (NOVO CONTRATO)
-    // ====================================================
+    // parte do código para o modo POST (novo contrato)
     try {
         const resp = await fetch(API_URL, {
             method: "POST",
@@ -182,6 +187,7 @@ async function salvarContrato(event) {
             throw new Error(erro.message || "Erro ao salvar contrato.");
         }
 
+        // recarrega a lista de contratos
         await carregarContratos();
         limparCadastro();
         alert("Contrato salvo com sucesso!");
@@ -191,6 +197,7 @@ async function salvarContrato(event) {
     }
 }
 
+// exclui um contrato pelo ID
 async function deletarContrato(id) {
     if (!confirm(`Tem certeza que deseja excluir o contrato ${id}?`)) return;
 
@@ -208,8 +215,7 @@ async function deletarContrato(id) {
     }
 }
 
-// --------- BUSCA ---------
-
+// Busca contratos pelo ID
 function buscarPorId(event) {
     event.preventDefault();
     const idStr = document.getElementById("buscaId").value.trim();
@@ -219,19 +225,20 @@ function buscarPorId(event) {
         return;
     }
 
+    // filtra a lista pelo ID
     const lista = contratosCache.filter(
         (c) => String(c.id) === String(idStr)
     );
     renderTabela(lista);
 }
 
+// Limpa o campo de busca e exibe todos os contratos
 function limparBusca() {
     document.getElementById("buscaId").value = "";
     renderTabela(contratosCache);
 }
 
-// --------- FORM ---------
-
+// Limpa o formulário de cadastro/edição
 function limparCadastro() {
     document.getElementById("cadId").value = "";
     document.getElementById("cadNumero").value = "";
@@ -245,6 +252,7 @@ function limparCadastro() {
     resetarBotaoSalvar();
 }
 
+// Preenche o formulário com os dados do contrato
 function preencherFormulario(contrato) {
     document.getElementById("cadId").value = contrato.id;
     document.getElementById("cadNumero").value = contrato.numero;
@@ -261,8 +269,7 @@ function preencherFormulario(contrato) {
     document.getElementById("cadDescricao").value = contrato.descricao ?? "";
 }
 
-// --------- MODO EDIÇÃO (PUT) ---------
-
+// Entra no modo de edição para o contrato com o ID fornecido
 function entrarModoEdicao(id) {
     const contrato = contratosCache.find(
         (c) => String(c.id) === String(id)
@@ -284,6 +291,7 @@ function entrarModoEdicao(id) {
     alert("Contrato carregado para edição.");
 }
 
+// Reseta o botão salvar para o estado padrão
 function resetarBotaoSalvar() {
     const btn = document.getElementById("btnSalvar");
     btn.innerHTML = `<i class="bi bi-save"></i> Salvar`;
@@ -291,8 +299,7 @@ function resetarBotaoSalvar() {
     btn.classList.add("btn-success");
 }
 
-// --------- EVENTOS ---------
-
+// Configura os event listeners após o carregamento do DOM
 document.addEventListener("DOMContentLoaded", () => {
     carregarContratos();
 
@@ -316,7 +323,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .getElementById("btnAtualizar")
         .addEventListener("click", carregarContratos);
 
-    // AÇÕES NA TABELA
+    // ações da tabela
     const tbody = document.getElementById("tabelaContratos");
     tbody.addEventListener("click", (e) => {
         const btn = e.target.closest("button");
